@@ -1,4 +1,4 @@
-import 'package:fin_auditing/ModelView/ApiServices/CompteApi.dart';
+import 'package:fin_auditing/ViewModel/ApiServices/CompteApi.dart';
 import 'package:fin_auditing/Models/CompteM.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -34,9 +34,9 @@ class Rapport {
   ];
 
   static final List<String> RapportClassement = <String>[
-    "Grand-Livre de l'Actif ",
-    "Grand-Livre du Passif ",
-    "Grand-Livre du Patrimoine ",
+    "Grand-Livre de l'Actif",
+    "Grand-Livre du Passif",
+    "Grand-Livre du Patrimoine",
     "Grand-Livre des Produits",
     "Grand-Livre des Charge",
     "Grand-Livre de l'Exploitation",
@@ -44,10 +44,10 @@ class Rapport {
   ];
 
   static final List<String> RapportSyntese = <String>[
-    "Bilan de l'Actif ",
-    "Bilan du passif ",
+    "Bilan de l'Actif",
+    "Bilan du passif",
     "Bilan Général",
-    "Bilan Synthèse ",
+    "Bilan Synthèse",
     "Exploitation-Produits",
     "Exploitation-Charges",
     "Exploitation Générale",

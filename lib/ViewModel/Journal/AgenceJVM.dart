@@ -9,9 +9,16 @@ class AgenceJVM with ChangeNotifier {
 
   List<Agence> get items => _agence;
 
+  late String _codeAgence;
+  String get getCodeAgence=>_codeAgence;
+
+  void setAge(String codeAgence) {
+    _codeAgence = codeAgence;
+  }
 
   Future loadAgenceItems() async {
-    final url = Uri.parse(ApiConstants.baseUrl+ApiConstants.Journalgroupagence );
+    final url =
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.Journalgroupagence);
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

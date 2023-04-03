@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:async';
 
-import 'package:fin_auditing/ModelView/ApiServices/ApiConstants.dart';
-import 'package:fin_auditing/ModelView/ApiServices/ArticleApi.dart';
+import 'package:fin_auditing/ViewModel/ApiServices/ApiConstants.dart';
+import 'package:fin_auditing/ViewModel/ApiServices/ArticleApi.dart';
 import 'package:fin_auditing/Models/ArticleM.dart';
-import 'package:fin_auditing/Views/Drawer/myHeaderDrawer.dart';
+
 import 'package:fin_auditing/Views/Pages/AddArticlePage.dart';
 import 'package:fin_auditing/Views/Pages/LoginPage.dart';
 import 'package:flutter/material.dart';

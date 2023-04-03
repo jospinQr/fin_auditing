@@ -1,8 +1,8 @@
 import 'dart:ffi';
 
 
-import 'package:fin_auditing/ModelView/ApiServices/ApiConstants.dart';
-import 'package:fin_auditing/ModelView/AgenceVM.dart';
+
+import 'package:fin_auditing/ViewModel/AgenceVM.dart';
 
 import 'package:fin_auditing/Views/Items/activitesItme.dart';
 import 'package:fin_auditing/Views/Pages/ArticlePage.dart';
@@ -10,6 +10,7 @@ import 'package:fin_auditing/Views/Pages/ClientPage.dart';
 import 'package:fin_auditing/Views/Pages/ComptabilitePage.dart';
 import 'package:fin_auditing/Views/Pages/PlanComptablePage.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -172,10 +173,15 @@ class _HomePageState extends State<HomePage> {
                         {
                           ouvrirPage(const ComptabilitePage()),
                         }
-                      else if (items[index][0] == "Gestion articles")
+                      else if (items[index][0] == "G-Commercial")
                         {
                           ouvrirPage(const ArticlePage()),
                         }
+                      else if (items[index][0] == "G-Personel")
+                          {
+                            ouvrirPage(const ClientPage()),
+                          }
+
                     },
                   ),
                 );

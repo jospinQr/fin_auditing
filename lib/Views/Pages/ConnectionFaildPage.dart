@@ -35,20 +35,20 @@ class _connectionFailState extends State<connectionFail> {
                   ),
                 ),
                 MyBoutton(
-                    text: "Resayer", onTap: () => {_openSplash(), dispose()}),
+                  text: "Resayer",
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SplashView(),
+                      ),
+                    );
+                  },
+                ),
               ],
             )),
           ),
         ),
-      ),
-    );
-  }
-
-  void _openSplash() {
-    Navigator.push(context,
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) => const SplashView(),
-
       ),
     );
   }

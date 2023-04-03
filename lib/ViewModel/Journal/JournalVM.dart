@@ -5,7 +5,7 @@ import 'package:fin_auditing/Models/JounarlM.dart';
 import 'package:flutter/material.dart';
 
 
-import 'ApiServices/ApiConstants.dart';
+import '../ApiServices/ApiConstants.dart';
 import 'package:http/http.dart' as http;
 
 class JournalVM with ChangeNotifier {
@@ -13,8 +13,9 @@ class JournalVM with ChangeNotifier {
 
   List<JournalM> get item => _journal;
 
-  Future loadjournalItems() async {
-    final url =Uri.parse(ApiConstants.baseUrl + ApiConstants.journalBrouillard);
+  Future loadjournalItems(String numOpera) async {
+    final String params="numopera=$numOpera";
+    final url =Uri.parse(ApiConstants.baseUrl + ApiConstants.journalBrouillard+params);
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

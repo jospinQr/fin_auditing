@@ -11,8 +11,30 @@ class Fonctions {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.white60,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.stacked_line_chart),
+            ),
+          ],
           title: Text(titre),
+          titleTextStyle: const TextStyle(
+            color: Color.fromARGB(255, 0, 129, 129),
+            fontWeight: FontWeight.bold
+
+          ),
+
           content: Text(Contenu),
+          contentTextStyle: TextStyle(fontWeight: FontWeight.w300,color: Colors.black),
+          scrollable: true,
+          shape: const OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 0, 129, 129), width: 2),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
         );
       },
     );
@@ -21,8 +43,8 @@ class Fonctions {
   //verifier la connectivité au reseaux
 
   static late bool estConnecter;
+
   Future<void> CheckUserConnection() async {
-   
     try {
       var response = await http.get(Uri.parse("http://192.168.43.163:8000/"));
 

@@ -1,18 +1,25 @@
 class ApiConstants {
-  static String severUrl = 'http://192.168.43.163';
-  static String baseUrl = '$severUrl/FinAuditing-Web/api';
-  static String imageUrl = '/FinAuditing-Web/img/Bd_Images/';
-  static String userEndPoint = '/user';
-  static String articleEndPoint = '/view/ArticleView.php';
-  static String articleCountEndPoint = '/view/ArticleConuntView.php';
-  static String loginEndPoint = '/Controller/LoginAPi.php';
-  static String compteEndPoint = '/Controller/CompteAPI.php/';
-  static String clientEndPoint='/view/ClientView.php';
-  static String agenceEndPoint='/view/AgenceView.php';
-  static String siteEndPoint='/view/SiteView.php';
-  static String Journalgroupagence='/view/Journal/Journalgroupagence.php';
-  static String Journalgroupsite='/view/Journal/Journalgroupagence.php?';
-  static String Journaldateop='view/Journal/journalgroupdatesite.php?';
-  static String journalBrouillard='/view/journalBrouillardView.php';
+  static const String severUrl = 'http://192.168.43.163';
+  static const String baseUrl = '$severUrl/FinAuditing-Web/api';
+  static const String imageUrl = '/FinAuditing-Web/img/Bd_Images/';
+  static const String userEndPoint = '/user';
+  static const String articleEndPoint = '/view/ArticleView.php';
+  static const String articleCountEndPoint = '/view/ArticleConuntView.php';
+  static const String loginEndPoint = '/Controller/LoginAPi.php';
+  static const String compteEndPoint = '/Controller/CompteAPI.php/';
+  static const String clientEndPoint = '/view/ClientView.php';
+  static const String agenceEndPoint = '/view/AgenceView.php';
+  static const String siteEndPoint = '/view/SiteView.php';
 
+  //pour le journal chronologique
+  static const String Journalgroupagence =
+      '/view/JournalChronologique/Journalgroupagence.php';
+  static const String Journalgroupsite =
+      '/view/JournalChronologique/groupsitesansanne.php?';
+  static const String Journaldateop =
+      '/view/JournalChronologique/journalgroupdatesite.php?';
+  static const String Journaloperation =
+      '/view/JournalChronologique/journaloperation.php?';
+  static const String journalBrouillard =
+      '/view/JournalChronologique/journalChrono.php?';
 }

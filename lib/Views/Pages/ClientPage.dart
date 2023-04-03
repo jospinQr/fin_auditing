@@ -1,4 +1,4 @@
-import 'package:fin_auditing/ModelView/ApiServices/ClientApi.dart';
+import 'package:fin_auditing/ViewModel/ApiServices/ClientApi.dart';
 import 'package:fin_auditing/Models/ClientM.dart';
 import 'package:fin_auditing/Views/Pages/DetailClientPage.dart';
 import 'package:flutter/material.dart';

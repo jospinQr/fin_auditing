@@ -1,15 +1,15 @@
+import 'package:fin_auditing/ViewModel/TypeRapportVM.dart';
 import 'package:fin_auditing/Views/Drawer/myHeaderDrawer.dart';
 import 'package:fin_auditing/Views/Pages/JounalPages/ListAgencePage.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fin_auditing/Models/RapportM.dart';
-import '../../ModelView/AgenceVM.dart';
+import '../../ViewModel/AgenceVM.dart';
 import '../../Functions/Fonctions.dart';
-import 'package:fin_auditing/Views/Pages/RapportPage.dart';
 import 'package:intl/intl.dart';
 
-import '../../ModelView/JournalVM.dart';
+import '../../ViewModel/Journal/ExerciceVM.dart';
 
 class ComptabilitePage extends StatefulWidget {
   const ComptabilitePage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 var listTypeRap = Rapport.typeRapport;
 var listRapport = Rapport.RapportEnregistrement;
 
-List<String> listAnnee = <String>['2022', '2023'];
+List<String> listAnnee = <String>['2021', '2020'];
 
 enum choixTriCompte { numero, intitule }
 
@@ -73,13 +73,14 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
     }
   }
 
-  void changeSite() {}
-
   @override
   Widget build(BuildContext context) {
     myAgence = Provider.of<AgenceVM>(context);
-
+    var annee = Provider.of<ExerciceVM>(context);
+    var typeRapport = Provider.of<TypeRapportVM>(context);
+    annee.setanne(dropAnnee);
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: const Text(
           "Aperçu des rapports comptables",
@@ -165,6 +166,7 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
                         ),
                         onChanged: (String? value) {
                           // This is called when the user selects an item.
+                          typeRapport.setRapportName(value!);
                           setState(() {
                             dropRapport = value!;
                           });
@@ -202,6 +204,7 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
                             onChanged: (String? value) {
                               // This is called when the user selects an item.
                               setState(() {
+                                annee.setanne(value!);
                                 dropAnnee = value!;
                               });
                             },
@@ -289,67 +292,6 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text("Agence"),
-                        const SizedBox(width: 50),
-                        DropdownButton<String>(
-                            value: dropdownValueAgence,
-                            icon:
-                                const Icon(Icons.arrow_drop_down_circle_sharp),
-                            elevation: 16,
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 0, 129, 129)),
-                            underline: Container(
-                              height: 2,
-                              color: const Color.fromARGB(255, 0, 129, 129),
-                            ),
-                            onChanged: (value) {
-                              // This is called when the user selects an item.
-                              setState(() {
-                                dropdownValueAgence = value!;
-                              });
-                            },
-                            items: myAgence.items
-                                .map((e) => DropdownMenuItem(
-                                      value: e.desinAge,
-                                      child: Text(e.desinAge),
-                                    ))
-                                .toList())
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text("Site"),
-                        const SizedBox(width: 75),
-                        DropdownButton<String>(
-                          value: dropdownValueSite,
-                          icon: const Icon(Icons.arrow_drop_down_circle_sharp),
-                          elevation: 16,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 0, 129, 129)),
-                          underline: Container(
-                            height: 2,
-                            color: const Color.fromARGB(255, 0, 129, 129),
-                          ),
-                          onChanged: (value) {
-                            // This is called when the user selects an item.
-                            setState(() {
-                              dropdownValueSite = value!;
-                            });
-                          },
-                          items: myAgence.itemsSite
-                              .map((e) => DropdownMenuItem(
-                                    value: e.designsite,
-                                    child: Text(e.designsite),
-                                  ))
-                              .toList(),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
                     const Divider(color: Color.fromARGB(255, 0, 129, 129)),
                     const Text(
                       "Paramètres du compte",
@@ -403,8 +345,9 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
                               borderRadius: BorderRadius.circular(3)),
                           child: const Center(
                             child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 5),
-                                child: TextField(),),
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              child: TextField(),
+                            ),
                           ),
                         ),
                       ],
@@ -430,8 +373,26 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ListAgencePage()));
+          switch (dropRapport) {
+            case "Journal Chronologique":
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListAgencePage()));
+              break;
+
+            case "Journal Brouillard":
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListAgencePage()));
+              break;
+            case "Grand-Livre de l'Actif":
+              Fonctions.MessageDialog("", "Ok", context);
+              break;
+            default:
+              Fonctions.MessageDialog("", dropRapport, context);
+          }
         },
         backgroundColor: const Color.fromARGB(255, 0, 129, 129),
         child: const Icon(Icons.remove_red_eye_outlined),

@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'package:fin_auditing/ModelView/ApiServices/UserApi.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import '../../Models/User.dart';
+import '../../ViewModel/ApiServices/UserApi.dart';
 
 class ProfilView extends StatefulWidget {
   const ProfilView({Key? key}) : super(key: key);

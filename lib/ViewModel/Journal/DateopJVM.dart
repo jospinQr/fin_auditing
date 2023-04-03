@@ -11,11 +11,12 @@ class DateopJVM with ChangeNotifier {
 
   List<DateOJM> get items => _dateop;
 
-  Future loadAgenceItems(String codeSite, String codeAgence) async {
-    final String siteAgence = "codsite=$codeAgence&&codag=$codeAgence";
+  Future loadDateItems(String codeSite,String codAn ,String codeAgence) async {
+    final String params = "codsite=$codeSite&&codan=$codAn&&codag=$codeAgence";
     final url = Uri.parse(
-        ApiConstants.baseUrl + ApiConstants.Journaldateop + siteAgence);
+        ApiConstants.baseUrl + ApiConstants.Journaldateop+params);
     final response = await http.get(url);
+
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
