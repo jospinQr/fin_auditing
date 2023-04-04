@@ -1,6 +1,5 @@
-import 'package:fin_auditing/ViewModel/ApiServices/ApiConstants.dart';
+import 'package:fin_auditing/Constants/ApiConstants.dart';
 import 'package:flutter/material.dart';
-
 import '../../Models/ArticleM.dart';
 
 class Detail extends StatelessWidget {

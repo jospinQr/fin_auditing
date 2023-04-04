@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '../../Models/Journal/OperationM.dart';
-import '../ApiServices/ApiConstants.dart';
+import '../../Constants/ApiConstants.dart';
 import 'package:http/http.dart' as http;
 
 class OperationJVM with ChangeNotifier{

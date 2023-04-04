@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 
-import 'package:fin_auditing/ViewModel/ApiServices/ApiConstants.dart';
+import 'package:fin_auditing/Constants/ApiConstants.dart';
 import 'package:fin_auditing/ViewModel/ApiServices/ArticleApi.dart';
 import 'package:fin_auditing/Models/ArticleM.dart';
 
