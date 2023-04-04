@@ -20,6 +20,18 @@ class ApiConstants {
       '/view/JournalChronologique/journalgroupdatesite.php?';
   static const String Journaloperation =
       '/view/JournalChronologique/journaloperation.php?';
-  static const String journalBrouillard =
+  static const String journalChrono =
       '/view/JournalChronologique/journalChrono.php?';
+
+  //pour le journal chronologique
+  static const String JournalBrouillardgroupsite =
+      '/view/JournalBrouillard/groupsitesansanne.php?';
+  static const String JournalBrouillarddateop =
+      '/view/JournalBrouillard/journalgroupdatesite.php?';
+  static const String JournalBrouillardoperation =
+      '/view/JournalBrouillard/journaloperation.php?';
+  static const String journalBrouillard =
+      '/view/JournalBrouillard/journalBrouillard.php?';
+
+
 }
