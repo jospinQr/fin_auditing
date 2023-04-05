@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:fin_auditing/Models/Site.dart';
 import 'package:flutter/foundation.dart';
 import '../../Models/AgenceM.dart';
@@ -27,20 +28,23 @@ class SiteJVM with ChangeNotifier {
       _codeSite=codeSite;
   }
 
-  Future loadSiteItems(String CodAnne,String CodAge) async {
-    final String param = "codan=$CodAnne&&codag=$CodAge";
+  Future loadSiteItems(String CodAnne,String CodAge,String observation) async {
+    final String param = "codan=$CodAnne&&codag=$CodAge&&obsopera=$observation";
     final url =
         Uri.parse(ApiConstants.baseUrl + ApiConstants.Journalgroupsite+param);
     final response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
 
+    if (response.statusCode == 200) {
+
+      final data = json.decode(response.body);
       _listSite = List<SiteJM>.from(
         data.map((json) => SiteJM.fromjson(json)),
       );
       notifyListeners();
-    } else {
+    }
+
+    else {
       throw 'Une erreur produite ${response.statusCode}';
     }
   }

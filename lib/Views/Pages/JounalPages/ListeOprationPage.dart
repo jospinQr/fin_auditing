@@ -4,11 +4,13 @@ import 'package:fin_auditing/Models/Site.dart';
 import 'package:fin_auditing/ViewModel/Journal/AgenceJVM.dart';
 import 'package:fin_auditing/ViewModel/Journal/OperationJVM.dart';
 import 'package:fin_auditing/ViewModel/Journal/SiteJVM.dart';
+import 'package:fin_auditing/ViewModel/TypeRapportVM.dart';
 import 'package:fin_auditing/Views/Pages/JounalPages/JournalPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../ViewModel/Journal/ExerciceVM.dart';
+import '../LoadingPage.dart';
 
 class ListOprationPage extends StatefulWidget {
   const ListOprationPage(
@@ -30,26 +32,17 @@ class _ListOprationPageState extends State<ListOprationPage> {
   Widget build(BuildContext context) {
     ExerciceVM _annee = Provider.of<ExerciceVM>(context);
     OperationJVM _opera = Provider.of<OperationJVM>(context);
+    TypeRapportVM _typeRap=Provider.of<TypeRapportVM>(context);
 
     return FutureBuilder(
         future: _opera.loadopItems(
-            widget.date, widget.codsite, _annee.getAnnee, widget.codag),
+            widget.date, widget.codsite, _annee.getAnnee, widget.codag,_typeRap.getObservation),
         builder: (context, snapshot) {
 
           if(_opera.itemOpera.isEmpty){
             _opera.loadopItems(
-                widget.date, widget.codsite, _annee.getAnnee, widget.codag);
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text("Chargement en cours..."),
-                backgroundColor: const Color.fromARGB(255, 0, 129, 129),
-              ),
-              body:const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.cyanAccent,
-                ),
-              ),
-            );
+                widget.date, widget.codsite, _annee.getAnnee, widget.codag,_typeRap.getObservation);
+            return const LoadingPage();
           }
 
           return Scaffold(

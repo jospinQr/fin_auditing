@@ -15,7 +15,7 @@ class JournalVM with ChangeNotifier {
 
   Future loadjournalItems(String numOpera) async {
     final String params="numopera=$numOpera";
-    final url =Uri.parse(ApiConstants.baseUrl + ApiConstants.journalChrono+params);
+    final url =Uri.parse(ApiConstants.baseUrl + ApiConstants.journal+params);
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

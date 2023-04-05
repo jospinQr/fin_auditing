@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../ViewModel/Journal/AgenceJVM.dart';
+import '../LoadingPage.dart';
 
 class ListAgencePage extends StatefulWidget {
   const ListAgencePage({Key? key}) : super(key: key);
@@ -22,17 +23,7 @@ class _ListAgencePageState extends State<ListAgencePage> {
         builder: (context, snapshot) {
           if(_agence.items.isEmpty){
             _agence.loadAgenceItems();
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text("Chargement en cours..."),
-                backgroundColor: const Color.fromARGB(255, 0, 129, 129),
-              ),
-              body:const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.cyanAccent,
-                ),
-              ),
-            );
+            return const LoadingPage();
           }
           return Scaffold(
             appBar: AppBar(

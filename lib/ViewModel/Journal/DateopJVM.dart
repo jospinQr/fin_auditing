@@ -11,8 +11,8 @@ class DateopJVM with ChangeNotifier {
 
   List<DateOJM> get items => _dateop;
 
-  Future loadDateItems(String codeSite,String codAn ,String codeAgence) async {
-    final String params = "codsite=$codeSite&&codan=$codAn&&codag=$codeAgence";
+  Future loadDateItems(String codeSite,String codAn ,String codeAgence,String observation) async {
+    final String params = "codsite=$codeSite&&codan=$codAn&&codag=$codeAgence&&obsopera=$observation";
     final url = Uri.parse(
         ApiConstants.baseUrl + ApiConstants.Journaldateop+params);
     final response = await http.get(url);

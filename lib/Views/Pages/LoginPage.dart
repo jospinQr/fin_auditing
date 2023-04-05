@@ -4,6 +4,7 @@ import 'package:fin_auditing/Functions/Fonctions.dart';
 import 'package:fin_auditing/Views/Components/myButton.dart';
 import 'package:fin_auditing/Views/Pages/HomePage.dart';
 import 'package:flutter/material.dart';
+import '../Components/MyPassWordField.dart';
 import '../Components/MyTextField.dart';
 import 'package:http/http.dart' as http;
 import 'package:animate_do/animate_do.dart';
@@ -11,13 +12,11 @@ import 'package:animate_do/animate_do.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   //Editingcontrollers pour recuperer les donnees forni par l'utilisateur
   final userName = TextEditingController();
   final psw = TextEditingController();
@@ -43,40 +42,32 @@ class _LoginPageState extends State<LoginPage> {
             MaterialPageRoute(
               builder: (context) => const HomePage(),
             ),
-
           );
-
-
         } else {
           Fonctions.MessageDialog(
               "Echec",
               "Mot de passe ou nom d'utilisateur incorect${response.statusCode}",
               context);
+          isLoad=!isLoad;
         }
       } else {
         Fonctions.MessageDialog(
             "Attention", "Veillez completer tous les champs", context);
+            isLoad=!isLoad;
       }
     } on TimeoutException {
       Fonctions.MessageDialog("Attention", "timeOute", context);
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey[300],
       body: Center(
-        // child: Center(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Visibility(
-                visible: isLoad,
-                child: const LinearProgressIndicator(
-                  color: Color.fromARGB(255, 0, 129, 129),
-                ),
-              ),
               BounceInDown(
                 child: Image.asset(
                   "assets/logo.png",
@@ -111,21 +102,18 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           MyTextField(
-                            controller: userName,
-                            hintText: "Nom d'utilisateur",
-                            icontxt: Icons.person,
-                            isPsw: false,
-                            validator: null,
-                          ),
+                              controller: userName,
+                              hintText: "Nom d'utilisateur",
+                              icontxt: Icons.person,
+                              isPsw: false,
+                              validator: null),
                           const SizedBox(
                             height: 15,
                           ),
-                          MyTextField(
+                          MyPassWordField(
                             controller: psw,
-                            icontxt: Icons.lock,
-                            hintText: "Mot de passe",
-                            isPsw: true,
-                            validator: null,
+                            helpText: "Pas plus que 8 caractères ",
+                            labelText: "Mot de passe",
                           ),
                           const SizedBox(
                             height: 15,
@@ -133,20 +121,23 @@ class _LoginPageState extends State<LoginPage> {
                           MyBoutton(
                             text: 'Connexion',
                             onTap: () => {
-
                               setState(() {
-                                isLoad=!isLoad;
+                                isLoad = !isLoad;
                               }),
                               login(context),
-
-
-
                             },
+                          ),
+                          Visibility(
+                            visible: isLoad,
+                            child: const RefreshProgressIndicator(
+                              color: Color.fromARGB(255, 0, 129, 129),
+                              strokeWidth:5 ,
+
+                            ),
                           ),
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -157,4 +148,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-

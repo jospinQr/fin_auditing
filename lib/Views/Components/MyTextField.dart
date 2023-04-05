@@ -24,10 +24,11 @@ class MyTextField extends StatelessWidget {
         controller: controller,
         obscureText: isPsw,
         validator: validator,
+
         decoration: InputDecoration(
             icon: Icon(
               icontxt,
-              color: Color.fromARGB(255, 0, 129, 129),
+              color: const Color.fromARGB(255, 0, 129, 129),
             ),
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
@@ -38,8 +39,10 @@ class MyTextField extends StatelessWidget {
             fillColor: Colors.grey[100],
             filled: true,
             labelText: hintText,
-            labelStyle: TextStyle(color: Color.fromARGB(255, 0, 129, 129)),
-            hintStyle: const TextStyle(color: Colors.black45)),
+            labelStyle: const TextStyle(color: Color.fromARGB(255, 0, 129, 129)),
+            hintStyle: const TextStyle(color: Colors.black45),
+
+        ),
       ),
     );
   }

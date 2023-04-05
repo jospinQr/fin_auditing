@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../ComptabilitePage.dart';
+import '../LoadingPage.dart';
 
 class JournalPage extends StatefulWidget {
   JournalPage({Key? key, required this.numOperation}) : super(key: key);
@@ -24,17 +25,7 @@ class _JournalPageState extends State<JournalPage> {
         future: journal.loadjournalItems(widget.numOperation),
         builder: (context, snapshot) {
       if (journal.item.isEmpty) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text("Chargement en cours..."),
-            backgroundColor: const Color.fromARGB(255, 0, 129, 129),
-          ),
-          body: const Center(
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.cyanAccent,
-            ),
-          ),
-        );
+        return const LoadingPage();
       }
       return Scaffold(
         appBar: AppBar(
@@ -205,7 +196,7 @@ class _JournalPageState extends State<JournalPage> {
                       style: const TextStyle(color: Colors.white70),
                     ),
                     Text(
-                      "Crédit : ${operation.getOperation.mntd}",
+                      "Crédit : ${operation.getOperation.mntcr}",
                       style: const TextStyle(color: Colors.white70),
                     ),
                   ],

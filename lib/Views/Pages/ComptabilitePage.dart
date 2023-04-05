@@ -80,7 +80,7 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
     var typeRapport = Provider.of<TypeRapportVM>(context);
     annee.setanne(dropAnnee);
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text(
           "Aperçu des rapports comptables",
@@ -100,262 +100,205 @@ class _ComptabilitePageState extends State<ComptabilitePage> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Card(
-          elevation: 2,
-          color: Colors.grey[300],
+      body: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
-            children: <Widget>[
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: (Column(
-                  children: <Widget>[
-                    const Divider(color: Color.fromARGB(255, 0, 129, 129)),
-                    const Text(
-                      "Type de rapport",
-                      style: TextStyle(fontWeight: FontWeight.w900),
-                    ),
-                    const Divider(color: Color.fromARGB(255, 0, 129, 129)),
-                    DropdownButton<String>(
-                        value: dropTypeRapValue,
-                        icon: const Icon(Icons.arrow_drop_down_circle_sharp),
-                        elevation: 16,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 129, 129)),
-                        underline: Container(
-                          height: 2,
-                          color: const Color.fromARGB(255, 0, 129, 129),
-                        ),
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            dropTypeRapValue = value!;
-                            if (value == "Rapports d'enregeistrement") {
-                              dropRapport = Rapport.RapportEnregistrement.first;
-                              listToutRapport = Rapport.RapportEnregistrement;
-                            } else if (value == "Rapport de classement") {
-                              dropRapport = Rapport.RapportClassement.first;
-                              listToutRapport = Rapport.RapportClassement;
-                            } else if (value == "Rapport de verification") {
-                              dropRapport = Rapport.RapportVerification.first;
-                              listToutRapport = Rapport.RapportVerification;
-                            } else if (value == "Rapport de synthese") {
-                              dropRapport = Rapport.RapportSyntese.first;
-                              listToutRapport = Rapport.RapportSyntese;
-                            }
-                          });
-                        },
-                        items: listTypeRap
-                            .map<DropdownMenuItem<String>>((dynamic value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList()),
-                    DropdownButton<String>(
-                        value: dropRapport,
-                        icon: const Icon(Icons.arrow_drop_down_circle_sharp),
-                        elevation: 16,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 129, 129)),
-                        underline: Container(
-                          height: 2,
-                          color: const Color.fromARGB(255, 0, 129, 129),
-                        ),
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          typeRapport.setRapportName(value!);
-                          setState(() {
-                            dropRapport = value!;
-                          });
-                        },
-                        items: listToutRapport
-                            .map<DropdownMenuItem<String>>((dynamic value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList()),
-                    const SizedBox(height: 10),
-                    const Divider(color: Color.fromARGB(255, 0, 129, 129)),
-                    const Text(
-                      "Parametres générals",
-                      style: TextStyle(fontWeight: FontWeight.w900),
-                    ),
-                    const Divider(color: Color.fromARGB(255, 0, 129, 129)),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text("Exercice"),
-                        const SizedBox(width: 50),
-                        DropdownButton<String>(
-                            value: dropAnnee,
-                            icon:
-                                const Icon(Icons.arrow_drop_down_circle_sharp),
-                            elevation: 16,
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 0, 129, 129)),
-                            underline: Container(
-                              height: 2,
-                              color: const Color.fromARGB(255, 0, 129, 129),
+            children: [
+
+              Card(
+                  margin: EdgeInsets.all(20),
+                  elevation: 2,
+                  borderOnForeground: true,
+                  color: Colors.grey[300],
+
+
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: <Widget>[
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Type de rapport",
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            onChanged: (String? value) {
-                              // This is called when the user selects an item.
+                            DropdownButton<String>(
+                                value: dropTypeRapValue,
+                                icon:
+                                    const Icon(Icons.arrow_drop_down_circle_sharp),
+                                elevation: 16,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 0, 129, 129)),
+                                underline: Container(
+                                  height: 2,
+                                  color: const Color.fromARGB(255, 0, 129, 129),
+                                ),
+                                onChanged: (String? value) {
+                                  // This is called when the user selects an item.
+                                  setState(() {
+                                    dropTypeRapValue = value!;
+                                    if (value == "Rapports d'enregeistrement") {
+                                      dropRapport =
+                                          Rapport.RapportEnregistrement.first;
+                                      listToutRapport =
+                                          Rapport.RapportEnregistrement;
+                                    } else if (value == "Rapport de classement") {
+                                      dropRapport = Rapport.RapportClassement.first;
+                                      listToutRapport = Rapport.RapportClassement;
+                                    } else if (value == "Rapport de verification") {
+                                      dropRapport =
+                                          Rapport.RapportVerification.first;
+                                      listToutRapport = Rapport.RapportVerification;
+                                    } else if (value == "Rapport de synthese") {
+                                      dropRapport = Rapport.RapportSyntese.first;
+                                      listToutRapport = Rapport.RapportSyntese;
+                                    }
+                                  });
+                                },
+                                items: listTypeRap
+                                    .map<DropdownMenuItem<String>>((dynamic value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList()),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Rapport",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            DropdownButton<String>(
+                                value: dropRapport,
+                                icon:
+                                    const Icon(Icons.arrow_drop_down_circle_sharp),
+                                elevation: 16,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 0, 129, 129)),
+                                underline: Container(
+                                  height: 2,
+                                  color: const Color.fromARGB(255, 0, 129, 129),
+                                ),
+                                onChanged: (String? value) {
+                                  // This is called when the user selects an item.
+                                  typeRapport.setRapportName(value!);
+                                  if (value == "Journal Brouillard") {
+                                    typeRapport.setObservation("0");
+                                  } else if (value == "Journal Chronologique") {
+                                    typeRapport.setObservation("1");
+                                  }
+                                  setState(() {
+                                    dropRapport = value!;
+                                  });
+                                },
+                                items: listToutRapport
+                                    .map<DropdownMenuItem<String>>((dynamic value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList()),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Exercice",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(width: 50),
+                            DropdownButton<String>(
+                                value: dropAnnee,
+                                icon:
+                                    const Icon(Icons.arrow_drop_down_circle_sharp),
+                                elevation: 16,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 0, 129, 129)),
+                                underline: Container(
+                                  height: 2,
+                                  color: const Color.fromARGB(255, 0, 129, 129),
+                                ),
+                                onChanged: (String? value) {
+                                  // This is called when the user selects an item.
+                                  setState(() {
+                                    annee.setanne(value!);
+                                    dropAnnee = value!;
+                                  });
+                                },
+                                items: listAnnee
+                                    .map<DropdownMenuItem<String>>((dynamic value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList()),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        ListTile(
+                          title: const Text('Numéro'),
+                          leading: Radio<choixTriCompte>(
+                            activeColor: const Color.fromARGB(255, 0, 129, 129),
+                            value: choixTriCompte.numero,
+                            groupValue: _character,
+                            onChanged: (choixTriCompte? value) {
                               setState(() {
-                                annee.setanne(value!);
-                                dropAnnee = value!;
+                                _character = value;
                               });
                             },
-                            items: listAnnee
-                                .map<DropdownMenuItem<String>>((dynamic value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList()),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text("Date debut"),
-                        const SizedBox(width: 30),
-                        Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.white60,
-                              border: Border.all(
-                                color: const Color.fromARGB(255, 0, 129, 129),
-                              ),
-                              borderRadius: BorderRadius.circular(3)),
-                          child: Center(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 2),
-                              child: Text(
-                                dateDebut!,
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 0, 129, 129),
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text('Intitulé'),
+                          leading: Radio<choixTriCompte>(
+                            activeColor: const Color.fromARGB(255, 0, 129, 129),
+                            value: choixTriCompte.intitule,
+                            groupValue: _character,
+                            onChanged: (choixTriCompte? value) {
+                              setState(() {
+                                _character = value;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Rech",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Container(
+                              height: 40,
+                              width: 220,
+                              decoration: BoxDecoration(
+                                  color: Colors.white60,
+                                  border: Border.all(
+                                    color: const Color.fromARGB(255, 0, 129, 129),
+                                  ),
+                                  borderRadius: BorderRadius.circular(3)),
+                              child: const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: TextField(),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                        const SizedBox(width: 10),
-                        IconButton(
-                            onPressed: () {
-                              etatDate = "debut";
-                              DateN(dateDebut);
-                            },
-                            icon: const Icon(
-                              Icons.date_range_rounded,
-                              color: Color.fromARGB(255, 0, 129, 129),
-                            )),
+                        const SizedBox(height: 10),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text("Date fin"),
-                        const SizedBox(width: 50),
-                        Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.white60,
-                              border: Border.all(
-                                color: const Color.fromARGB(255, 0, 129, 129),
-                              ),
-                              borderRadius: BorderRadius.circular(3)),
-                          child: Center(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5),
-                              child: Text(
-                                dateFin!,
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 0, 129, 129),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        IconButton(
-                            onPressed: () {
-                              etatDate = "fin";
-                              DateN(dateFin);
-                            },
-                            icon: const Icon(Icons.date_range_rounded,
-                                color: Color.fromARGB(255, 0, 129, 129))),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    const Divider(color: Color.fromARGB(255, 0, 129, 129)),
-                    const Text(
-                      "Paramètres du compte",
-                      style: TextStyle(fontWeight: FontWeight.w900),
-                    ),
-                    const Divider(color: Color.fromARGB(255, 0, 129, 129)),
-                    const SizedBox(height: 10),
-                    ListTile(
-                      title: const Text('Numéro'),
-                      leading: Radio<choixTriCompte>(
-                        activeColor: const Color.fromARGB(255, 0, 129, 129),
-                        value: choixTriCompte.numero,
-                        groupValue: _character,
-                        onChanged: (choixTriCompte? value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text('Intitulé'),
-                      leading: Radio<choixTriCompte>(
-                        activeColor: const Color.fromARGB(255, 0, 129, 129),
-                        value: choixTriCompte.intitule,
-                        groupValue: _character,
-                        onChanged: (choixTriCompte? value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text(
-                          "Rech",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 75),
-                        Container(
-                          height: 40,
-                          width: 220,
-                          decoration: BoxDecoration(
-                              color: Colors.white60,
-                              border: Border.all(
-                                color: const Color.fromARGB(255, 0, 129, 129),
-                              ),
-                              borderRadius: BorderRadius.circular(3)),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: TextField(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                )),
-              ),
+                  )),
             ],
           ),
         ),

@@ -11,27 +11,18 @@ class ApiConstants {
   static const String agenceEndPoint = '/view/AgenceView.php';
   static const String siteEndPoint = '/view/SiteView.php';
 
-  //pour le journal chronologique
+  //pour le journal
   static const String Journalgroupagence =
-      '/view/JournalChronologique/Journalgroupagence.php';
+      '/view/Journal/Journalgroupagence.php';
   static const String Journalgroupsite =
-      '/view/JournalChronologique/groupsitesansanne.php?';
+      '/view/Journal/groupsitesansanne.php?';
   static const String Journaldateop =
-      '/view/JournalChronologique/journalgroupdatesite.php?';
+      '/view/Journal/journalgroupdatesite.php?';
   static const String Journaloperation =
-      '/view/JournalChronologique/journaloperation.php?';
-  static const String journalChrono =
-      '/view/JournalChronologique/journalChrono.php?';
+      '/view/Journal/journaloperation.php?';
+  static const String journal =
+      '/view/Journal/journal.php?';
 
-  //pour le journal chronologique
-  static const String JournalBrouillardgroupsite =
-      '/view/JournalBrouillard/groupsitesansanne.php?';
-  static const String JournalBrouillarddateop =
-      '/view/JournalBrouillard/journalgroupdatesite.php?';
-  static const String JournalBrouillardoperation =
-      '/view/JournalBrouillard/journaloperation.php?';
-  static const String journalBrouillard =
-      '/view/JournalBrouillard/journalBrouillard.php?';
 
 
 }

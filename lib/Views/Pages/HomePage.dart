@@ -51,8 +51,9 @@ class _HomePageState extends State<HomePage> {
       myAgence.loadSiteItems();
       return const Scaffold(
         body: Center(
-          child: CircularProgressIndicator(
-            backgroundColor: Colors.cyanAccent,
+          child:   RefreshProgressIndicator(
+            color: Color.fromARGB(255, 0, 129, 129),
+            strokeWidth:5 ,
           ),
         ),
       );
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
 
     return  Scaffold(
       appBar: AppBar(
-         title: Text("FinAuditing Mobile"),
+         title: const Text("FinAuditing Mobile"),
          centerTitle: true,
          backgroundColor: const Color.fromARGB(255, 0, 129, 129),
          actions: [
