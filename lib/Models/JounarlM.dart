@@ -1,4 +1,4 @@
-import 'package:fin_auditing/ViewModel/Journal/JournalVM.dart';
+
 
 class JournalM {
 
